@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">B3Tempoduffard</string>
 
+    <string name="histo_btn_v1">HISTO V1</string>
+    <string name="histo_btn_v2">HISTO V2</string>
     <string name="not_available">ND</string>
     <string name="history_bt">Historique</string>
     <string name="dcv_today_tx">Aujourd\'hui</string>
@@ -8,6 +10,13 @@
 
     <string name="channel_name">Alertes Tempo</string>
     <string name="channel_description">Alerte Tempo pour les jours blancs ou rouges</string>
+    <string name="tempo_notif_title">Alerte Tempo</string>
+    <string name="tempo_notif_text">"Demain jour %s"</string>
+
+    <string name="tempo_bleu_color_text">Bleu</string>
+    <string name="tempo_white_color_text">Blanc</string>
+    <string name="tempo_red_color_text">Rouge</string>
+    <string name="tempo_undecided_color_text">indéterminé</string>
 
 
 </resources>

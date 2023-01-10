@@ -7,7 +7,7 @@
     tools:context="MainActivity">
 
     <com.example.b3tempoduffard.DayColorView
-        android:id="@+id/today_dcv"
+        android:id="@+id/tomorrow_dcv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -15,20 +15,20 @@
         app:captionText="@string/dcv_tomorrow_tx"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/tomorrow_dcv"
+        app:layout_constraintStart_toEndOf="@+id/today_dcv"
         app:layout_constraintTop_toTopOf="parent"
 
         />
 
     <com.example.b3tempoduffard.DayColorView
-        android:id="@+id/tomorrow_dcv"
+        android:id="@+id/today_dcv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:captionText="@string/dcv_today_tx"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/today_dcv"
+        app:layout_constraintEnd_toStartOf="@+id/tomorrow_dcv"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

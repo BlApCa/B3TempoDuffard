@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -23,6 +22,7 @@ public class DayColorView extends View {
     private int captionColor = Color.BLACK;
     private float captionTextSize = 0;
     private int dayCircleColor = Color.GRAY;
+    private String captionTextColorDay;
 
     private Context context;
 
@@ -31,6 +31,7 @@ public class DayColorView extends View {
 
     private float mTextWidth;
     private float mTextHeight;
+    private float colorDayTextWidth;
 
     public DayColorView(Context context) {
         super(context);
@@ -59,6 +60,11 @@ public class DayColorView extends View {
 
                 captionText= context.getString(R.string.not_available);
             }
+            captionTextColorDay = a.getString(R.styleable.DayColorView_captionTextColorDay);
+            if(captionTextColorDay == null) {
+
+                captionTextColorDay = context.getString(R.string.tempo_undecided_color_text);
+            }
             captionColor = a.getColor(R.styleable.DayColorView_captionColor, captionColor);
             captionTextSize = a.getDimension(R.styleable.DayColorView_captionTextSize, getResources().getDimension(R.dimen.tempo_color_text_size));
             dayCircleColor = a.getColor(R.styleable.DayColorView_dayCircleColor, ContextCompat.getColor(context, R.color.tempo_undecided_day_bg));
@@ -85,6 +91,7 @@ public class DayColorView extends View {
         mTextWidth = textPaint.measureText(captionText);
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
         mTextHeight = fontMetrics.bottom;
+        colorDayTextWidth = textPaint.measureText(captionTextColorDay);
     }
 
     private void setCirclePaint() {
@@ -119,17 +126,22 @@ public class DayColorView extends View {
                 paddingTop + (contentHeight + mTextHeight) / 2,
                 textPaint);
 
+        canvas.drawText(captionTextColorDay,
+                paddingLeft + (contentWidth - colorDayTextWidth) /2,
+                paddingTop + (contentHeight  + mTextHeight * 10 ) /2,
+                textPaint);
+
     }
 
 
     public void setDayCircleColor(TempoColor color) {
-        dayCircleColor = ContextCompat.getColor(context, color.getResId());
+        dayCircleColor = ContextCompat.getColor(context, color.getColorResId());
         setCirclePaint();
         invalidate();
     }
 
-    public void setCaptionText(String text) {
-        captionText = text;
+    public void setCaptionTextColorDay(String text) {
+        captionTextColorDay = text;
         setTextPaintAndMeasurements();
         invalidate();
     }

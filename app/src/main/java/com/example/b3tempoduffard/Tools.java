@@ -33,13 +33,11 @@ public class Tools {
         Date now = new Date();
         return sdf.format(now);
     }
-    public static String getNextYear(String pattern) {
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.FRANCE);
+    public static String getPastYear() {
         Calendar calendar = Calendar.getInstance();
-        Integer nextYear = calendar.get(calendar.YEAR)+1;
+        Integer pastYear = calendar.get(calendar.YEAR)-1;
 
-
-        return nextYear.toString();
+        return pastYear.toString();
     }
 
 

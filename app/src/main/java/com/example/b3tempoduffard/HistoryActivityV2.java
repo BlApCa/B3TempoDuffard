@@ -2,59 +2,56 @@ package com.example.b3tempoduffard;
 
 import static com.example.b3tempoduffard.MainActivity.edfApi;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.example.b3tempoduffard.databinding.ActivityHistoryBinding;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import com.example.b3tempoduffard.databinding.ActivityHistoryV2Binding;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivityV2 extends AppCompatActivity {
+
     private static final String LOG_TAG = HistoryActivity.class.getSimpleName();
     public String beginDate = Tools.getPastYear();
     public String endDate = Tools.getNowDate("yyyy");
 
 
     // init views
-    ActivityHistoryBinding binding;
+    ActivityHistoryV2Binding binding;
 
     // data model
     List<TempoDate> tempoDates = new ArrayList<>() ;
 
     // RecyclerView adapter
-    TempoDateAdapter tempoDateAdapter;
+    TempoDateAdapter tempoDateAdapterV2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_history);
-        binding = ActivityHistoryBinding.inflate(getLayoutInflater());
+        binding = ActivityHistoryV2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // init recycler view
-        binding.tempoHistoryRv.setHasFixedSize(true);
-        binding.tempoHistoryRv.setLayoutManager(new LinearLayoutManager(this));
-        tempoDateAdapter = new TempoDateAdapter(tempoDates,this);
-        binding.tempoHistoryRv.setAdapter(tempoDateAdapter);
+        binding.tempoHistoryV2Rv.setHasFixedSize(true);
+        binding.tempoHistoryV2Rv.setLayoutManager(new LinearLayoutManager(this));
+        tempoDateAdapterV2 = new TempoDateAdapter(tempoDates,this);
+        binding.tempoHistoryV2Rv.setAdapter(tempoDateAdapterV2);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        binding.tempoHistoryPb.setVisibility(View.VISIBLE);
+        binding.tempoHistoryV2Pb.setVisibility(View.VISIBLE);
         if(edfApi != null) {
             getTempoHistory();
         }
@@ -69,9 +66,9 @@ public class HistoryActivity extends AppCompatActivity {
                 if(response.code() == HttpURLConnection.HTTP_OK && response.body() != null ) {
                     tempoDates.addAll(response.body().getTempoDates());
                     Log.d(LOG_TAG,"nb elements = " + tempoDates.size());
-                    binding.tempoHistoryPb.setVisibility(View.GONE);
+                    binding.tempoHistoryV2Pb.setVisibility(View.GONE);
                 }
-                tempoDateAdapter.notifyDataSetChanged();
+                tempoDateAdapterV2.notifyDataSetChanged();
             }
 
             @Override
@@ -82,3 +79,4 @@ public class HistoryActivity extends AppCompatActivity {
 
     }
 }
+
