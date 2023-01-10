@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-
+    //
     public void getTempoDaysLeft() {
 
         Call<TempoDaysLeft> call = edfApi.getTempoDaysLeft(IEdfApi.EDF_TEMPO_API_ALERT_TYPE);
